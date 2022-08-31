@@ -1,36 +1,16 @@
-//Question
+const select = document.querySelector("select");
+const listContainer = document.querySelector(".list");
 
-const url = "https://breakingbadapi.com/api/characters/";
+select.addEventListener("change", buildList);
 
-const dropDown = document.querySelector("select");
-const boxes = document.querySelector(".list")
+function buildList(event) {
+    console.log(event.target.value);
 
-console.log(dropDown);
+    const amount = event.target.value;
 
-async function getCharacters() {
+    listContainer.innerHTML = "";
 
-    try{
-        const response = await fetch(url)
-        const data = await response.json()
-        console.log(data)
-    
-        for (let i = 0; i < data[i].length; i++) {
-            if (i === 10){
-                break
-            }
-        }
-    
-        const addBoxes = data;
-    
-        addBoxes.forEach(function(data) {
-            boxes.innerHTML += `<a href="details.html?id${data.char_id}" class="container">`
-        });
-    } catch {
-        console.log(error)
+    for (let i = 1; i <= amount; i++) {
+        listContainer.innerHTML += `<a class="item" href="details.html?id=${i}">${i}</a>`;
     }
-
 }
-
-
-getCharacters()
-
